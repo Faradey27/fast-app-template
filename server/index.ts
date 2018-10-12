@@ -1,10 +1,13 @@
-import * as  express from 'express';
 import * as next from 'next';
+import * as  express from 'express';
+
 import * as compression from 'compression';
-import * as spdy from 'spdy';
 import * as fs from 'fs';
 
 import routes from './routes';
+import withHTTP2 from './utils/withHTTP2';
+import withHTTP2Push from './utils/withHTTP2Push';
+import { readStatics } from './utils/preloadStatics';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -16,41 +19,27 @@ const options = {
   cert: fs.readFileSync(__dirname + '/ssl/certificate/server.crt')
 };
 
+const rootPath = (app as any).distDir as string;
+const buildId = (app as any).buildId as string;
+
+const staticFiles = readStatics({rootPath, buildId});
+
 app.prepare()
-.then(() => {
-  const server = express();
+  .then(() => {
+    const server = express();
 
-  if (process.env.NODE_ENV === "production") {
-    server.use(compression());
-  }
-
-  server.use((req, res, next) => {
-    if (req.url === '/') {
-      console.log((res as any).push, '---------------');
-      if ((res as any).push) {
-        fs.readFile('/_next/static/development/pages/index.js', (_error, data)=> {
-          (res as any).push('/_next/static/development/pages/index.js', {}).end(data);
-        });
-      }
-    }
-    console.log(req.url);
-    next();
-  });
-
-  server.use(handleRoutes);
-
-  server.listen(port, (err) => {
-    if (err) throw err;
-    console.info(`> Ready on http://localhost:${port}`);
-  });
-
-  spdy
-  .createServer(options, server)
-  .listen(port + 1, (err) => {
-    if (err) {
-      throw new Error(err);
+    if (process.env.NODE_ENV === "production") {
+      server.use(compression());
     }
 
-    console.info(`> Ready on https://localhost:${port + 1}`);
-  });
-})
+    withHTTP2Push(server, staticFiles);
+
+    server.use(handleRoutes);
+
+    server.listen(port, (err) => {
+      if (err) throw err;
+      console.info(`> Ready on http://localhost:${port}`);
+    });
+
+    withHTTP2({options, server, port: port + 1});
+  })
