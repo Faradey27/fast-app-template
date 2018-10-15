@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json && cp -r server/ssl .next/production-server/ssl",
-    "start": "NODE_ENV=production node .next/production-server/index.js"
+    "start": "NODE_ENV=production node .next/production-server/index.js",
+    "analyze": "cross-env ANALYZE=1 npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-rc.1",
@@ -10,11 +11,13 @@
     "@zeit/next-typescript": "1.1.0",
     "babel-loader": "^7.1.4",
     "compression": "^1.7.3",
+    "cross-env": "^5.2.0",
     "express": "^4.16.3",
     "next": "latest",
     "next-routes": "^1.4.2",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
+    "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "spdy": "^3.4.7",
@@ -27,6 +30,7 @@
     "@types/react": "^16.0.36",
     "@types/spdy": "^3.4.4",
     "nodemon": "^1.17.5",
-    "ts-node": "^4.1.0"
+    "ts-node": "^4.1.0",
+    "webpack-bundle-analyzer": "^3.0.2"
   }
 }
