@@ -2,16 +2,19 @@
 
 const withHTTP2Push = (server, statics) => {
   server.use((req, res, next) => {
-    if (req.url === '/') {
+    const pageNames = statics.filter(file => file.type === 'page').map(p => p.routeName);
+    if (pageNames.indexOf(req.url) !== -1) {
       if ((res as any).push) {
-        statics.forEach(file => {
-          (res as any).push(file.route, {'content-type': 'application/javascript'}, (err, stream) => {
-            if (err) {
-              return;
-            }
-            stream.end(file.data);
-          });
-        })
+        statics
+          .filter(file => pageNames.indexOf(file.routeName) === -1 || file.routeName === req.url )
+          .forEach(file => {
+            (res as any).push(file.route, {'content-type': 'application/javascript'}, (err, stream) => {
+              if (err) {
+                return;
+              }
+              stream.end(file.data);
+            });
+          })
       }
     }
     next();

@@ -12,9 +12,11 @@ export const readChunkFiles = (rootPath: string) => {
       const pathToFile = path.join(rootPath, subPath, name);
       return {
         name,
+        type: 'chunk',
         path: pathToFile,
         data: fs.readFileSync(pathToFile),
-        route: `/_next/${subPath}/${name}`
+        route: `/_next/${subPath}/${name}`,
+        routeName: `/${name.replace('.js', '')}`,
       };
     });
 };
@@ -27,9 +29,11 @@ export const readRuntimeFiles = (rootPath: string) => {
       const pathToFile = path.join(rootPath, subPath, name);
       return {
         name,
+        type: 'runtime',
         path: pathToFile,
         data: fs.readFileSync(pathToFile),
-        route: `/_next/${subPath}/${name}`
+        route: `/_next/${subPath}/${name}`,
+        routeName: `/${name.replace('.js', '')}`,
       };
     });
 };
@@ -42,9 +46,11 @@ export const readPagesFiles = (rootPath: string, buildId: string) => {
       const pathToFile = path.join(rootPath, subPath, name);
       return {
         name,
+        type: name === '_app.js' || name === '_error.js' ? '_page' : 'page',
         path: pathToFile,
         data: fs.readFileSync(pathToFile),
-        route: `/_next/${subPath}/${name}`
+        route: `/_next/${subPath}/${name}`,
+        routeName: name === 'index.js' ? '/' : `/${name.replace('.js', '')}`,
       };
     });
 };
