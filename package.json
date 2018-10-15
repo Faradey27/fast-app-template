@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "dev": "nodemon server/index.ts",
-    "build": "next build && tsc --project tsconfig.server.json && cp -r server/ssl .next/production-server/ssl",
-    "start": "NODE_ENV=production node .next/production-server/index.js",
+    "dev": "nodemon src/server/server.ts",
+    "build": "next build src && tsc --project tsconfig.server.json && cp -r src/server/ssl src/.next/ssl",
+    "start": "cross-env NODE_ENV=production node src/.next/server.js",
     "analyze": "cross-env ANALYZE=1 npm run build"
   },
   "dependencies": {
