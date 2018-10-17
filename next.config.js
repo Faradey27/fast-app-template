@@ -14,5 +14,5 @@ module.exports = withTypescript(withPreact({
     config.plugins.push(new ProgressBarPlugin());
     config.plugins.push(new webpack.IgnorePlugin(/__test__/));
     return config;
-  }
+  },
 }));
