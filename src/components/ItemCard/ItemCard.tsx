@@ -1,15 +1,12 @@
 import React from 'react';
 
-export interface IItem {
-  id: string;
-  name: string;
-};
+import { IItem } from './types';
 
-export class ItemCard extends React.Component<IItem> {
+class ItemCard extends React.Component<IItem> {
   render() {
     return (
       <div className="item-root">
-        {this.props.name}3
+        {this.props.name}
         <style>
           {`
             .item-root {
@@ -27,4 +24,6 @@ export class ItemCard extends React.Component<IItem> {
     )
   }
 }
+
+export default ItemCard;
 

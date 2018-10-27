@@ -1,5 +1,5 @@
-import * as nextRoutes from 'next-routes';
+const NextRoutes = require('next-routes');
 
-const routes = (nextRoutes as any)();
+const routes = new NextRoutes();
 
 export default routes;

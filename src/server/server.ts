@@ -41,6 +41,8 @@ app.prepare()
       withHTTP2Push(server, staticFiles);
     }
 
+    server.use(express.static(path.join(__dirname, '../static')));
+
     server.use(handleRoutes);
 
     server.listen(PORT, (err) => {

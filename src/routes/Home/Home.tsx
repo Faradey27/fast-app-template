@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { ItemCard, IItem } from './../../components/ItemCard';
+import ItemCard from './../../components/ItemCard';
+import { IItem } from './../../components/ItemCard/types';
 
 interface IHomeProps {
   items: IItem[];
@@ -26,8 +27,8 @@ class Home extends React.Component<IHomeProps> {
 
   renderItems() {
     return this.props.items.map(item => (
-      <div className="item-wrap">
-        <ItemCard key={item.id} {...item}/>
+      <div className="item-wrap" key={item.id}>
+        <ItemCard {...item}/>
       </div>
     ))
   }
