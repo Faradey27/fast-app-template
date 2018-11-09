@@ -1,4 +1,5 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Head, Main, NextScript } from 'next/document';
+import Noscript from '../components/Noscript';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -24,9 +25,9 @@ class MyDocument extends Document {
           <style>{`body { margin: 0 }`}</style>
         </Head>
         <body>
-          <noscript>
+          <Noscript>
             You need to enable JavaScript to run this app.
-          </noscript>
+          </Noscript>
           <Main />
           <NextScript />
         </body>
