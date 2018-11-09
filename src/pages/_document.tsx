@@ -8,11 +8,12 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
         <title>{'Fast App Template'}</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta charSet="utf-8" />
+          <meta name="description" content="Template for very fast React application"/>
           <style>{`body { margin: 0 }`}</style>
         </Head>
         <body>
