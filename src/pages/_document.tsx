@@ -26,7 +26,7 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Noscript>
-            You need to enable JavaScript to run this app.
+            <h2>You need to enable JavaScript to run this app.</h2>
           </Noscript>
           <Main />
           <NextScript />

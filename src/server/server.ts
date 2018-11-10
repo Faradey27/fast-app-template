@@ -10,7 +10,8 @@ import withHTTP2 from './utils/withHTTP2';
 import withHTTP2Push from './utils/withHTTP2Push';
 import { readStatics } from './utils/statics';
 
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT_HTTP = process.env.NODE_ENV === 'production' ? 80 : 3000;
+const PORT_HTTPS = process.env.NODE_ENV === 'production' ? 443 : 3001;
 const __DEV__ = process.env.NODE_ENV !== 'production';
 
 const app = next({
@@ -43,14 +44,33 @@ app.prepare()
 
     server.use(express.static(path.join(__dirname, '../static')));
 
-    server.use(handleRoutes);
+    // Enable reverse proxy support in Express. This causes the
+    // the "X-Forwarded-Proto" header field to be trusted so its
+    // value can be used to determine the protocol. See
+    // http://expressjs.com/api#app-settings for more details.
+    server.enable('trust proxy');
 
-    server.listen(PORT, (err) => {
+    server.use((req, res, next) => {
+      if (__DEV__) {
+        return handleRoutes(req, res, next);
+      }
+
+      if (req.path === '/service-worker.js') {
+        const filePath = path.join(__dirname, '../.next', req.path);
+        app.serveStatic(req, res, filePath);
+      } else if (req.secure) {
+        handleRoutes(req, res, next);
+      } else {
+        res.redirect('https://' + req.headers.host + req.url);
+      }
+    });
+
+    server.listen(PORT_HTTP, (err) => {
       if (err) throw err;
-      console.info(`> Ready on http://localhost:${PORT}`);
+      console.info(`> Ready on http://localhost:${PORT_HTTP}`);
     });
 
     if (!__DEV__) {
-      withHTTP2({options, server, port: PORT + 1});
+      withHTTP2({options, server, port: PORT_HTTPS});
     }
   })
