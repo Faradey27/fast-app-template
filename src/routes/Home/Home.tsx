@@ -35,7 +35,7 @@ class Home extends React.Component<IHomeProps> {
 
   render() {
     return (
-      <div className="home-page">
+      <div className="home-page" data-hook="home-page">
         {this.renderItems()}
         <style>
           {`

@@ -1,0 +1,41 @@
+{
+  "moduleFileExtensions": [
+    "tsx",
+    "ts",
+    "js",
+    "json"
+  ],
+  "moduleNameMapper": {
+    "\\.(css|scss)$": "identity-obj-proxy",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__test__/mock/fileMock.js"
+  },
+  "transform": {
+    "^.+\\.tsx?$": "babel-jest"
+  },
+  "testMatch": [
+    "**/__test__/**/*.spec.ts",
+    "**/__test__/**/*.spec.tsx",
+    "__test__/**/*.spec.ts",
+    "test/**/*.spec.ts"
+  ],
+  "testEnvironment": "jsdom",
+  "setupFiles": [
+    "./__test__/jest-setup.ts"
+  ],
+  "coverageDirectory": "tmp/coverage",
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "!src/**/*.d.ts",
+    "!src/pages/_document.tsx"
+  ],
+  "collectCoverage": true,
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}
