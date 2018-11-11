@@ -4,7 +4,7 @@
     "build": "rm -rf src/.next && next build src && tsc --project tsconfig.server.json && cp -r src/server/ssl src/.next/ssl",
     "start": "cross-env NODE_ENV=production node src/.next/server.js",
     "analyze": "cross-env ANALYZE=1 npm run build",
-    "test": "npm run size:ci && npm run lh:ci",
+    "test": "npm run test:unit && npm run size:ci && npm run lh:ci",
     "test:unit": "jest --config=jest.config.json",
     "lh": "lighthouse https://localhost --chrome-flags=\"--allow-insecure-localhost --headless\" --output=json --output-path=./tmp/_lh-report.json --score=75",
     "lh:ci": "node __test__/validators/lh-validate.js",

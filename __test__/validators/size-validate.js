@@ -36,7 +36,10 @@ const run = async () => {
   const pathToFileWithSize = path.join(__dirname, '.prev-size');
   const prevTotalSize = fs.existsSync(pathToFileWithSize) ? Number(fs.readFileSync(pathToFileWithSize)) : 0;
   const totalSize = Object.keys(sizes).reduce((acc, name) => acc + sizes[name].size, 0);
-  if (prevTotalSize && totalSize) {
+  if (!totalSize) {
+    log.error(`NO BUNDLE OR ZERO SIZE`);
+    process.exit(1);
+  } else if (prevTotalSize && totalSize) {
     if (totalSize > prevTotalSize) {
       log.error(`BUNDLE SIZE INCREASED: ${totalSize - prevTotalSize}`);
 
