@@ -1,4 +1,5 @@
 {
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
   "moduleFileExtensions": [
     "tsx",
     "ts",
@@ -27,7 +28,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "!src/**/*.d.ts",
-    "!src/pages/_document.tsx"
+    "!src/pages/*.ts",
+    "!src/pages/*.tsx",
+    "!src/server/**/*.ts"
   ],
   "collectCoverage": true,
   "coverageThreshold": {

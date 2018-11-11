@@ -7,7 +7,7 @@ export interface IErrorProps {
 class Error extends React.Component<IErrorProps, null> {
   render() {
     return (
-      <div>
+      <div data-hook="error-page">
         {this.props.statusCode}
       </div>
     );

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Noscript component should match snapshot 1`] = `
+<Noscript>
+  <noscript
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "Some text",
+      }
+    }
+    data-hook="noscript-component"
+  />
+</Noscript>
+`;

@@ -41,6 +41,7 @@
     "chromium": "^1.0.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
     "jest": "^23.6.0",
     "lighthouse": "^3.2.1",
     "lighthouse-ci": "^1.2.1",
