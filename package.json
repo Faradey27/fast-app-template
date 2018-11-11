@@ -4,7 +4,8 @@
     "build": "rm -rf src/.next && next build src && tsc --project tsconfig.server.json && cp -r src/server/ssl src/.next/ssl",
     "start": "cross-env NODE_ENV=production node src/.next/server.js",
     "analyze": "cross-env ANALYZE=1 npm run build",
-    "lighthouse": "lighthouse https://localhost --chrome-flags=\"--allow-insecure-localhost\" --view"
+    "lh": "lighthouse https://localhost --chrome-flags=\"--allow-insecure-localhost --headless\" --output=json --output-path=./tmp/_lh-report.json --score=75",
+    "lh:ci": "node __test__/lh-check.js"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-rc.1",
@@ -33,6 +34,7 @@
     "@types/spdy": "^3.4.4",
     "chromium": "^1.0.2",
     "lighthouse": "^3.2.1",
+    "lighthouse-ci": "^1.2.1",
     "nodemon": "^1.17.5",
     "ts-node": "^4.1.0",
     "webpack-bundle-analyzer": "^3.0.2"
