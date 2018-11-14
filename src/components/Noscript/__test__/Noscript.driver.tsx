@@ -6,18 +6,18 @@ import Noscript from './../index';
 export default class NoscriptDriver {
   private component: ReactWrapper;
 
-  when = {
+  public when = {
     created: () => {
       this.component = mount(<Noscript>Some text</Noscript>);
       return this;
     },
   };
 
-  is = {
+  public is = {
     ok: () => Boolean(this.component.find('[data-hook="noscript-component"]').length === 1),
   };
 
-  get = {
-    component: () => this.component
-  }
+  public get = {
+    component: () => this.component,
+  };
 }

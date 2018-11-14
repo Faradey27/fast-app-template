@@ -3,7 +3,7 @@ import React from 'react';
 import { IItem } from './types';
 
 class ItemCard extends React.Component<IItem> {
-  render() {
+  public render() {
     return (
       <div className="item-root">
         {this.props.name}
@@ -21,9 +21,8 @@ class ItemCard extends React.Component<IItem> {
           `}
         </style>
       </div>
-    )
+    );
   }
 }
 
 export default ItemCard;
-

@@ -6,14 +6,14 @@ import Home from './../index';
 export default class HomeDriver {
   private component: ReactWrapper;
 
-  when = {
+  public when = {
     created: () => {
-      this.component = mount(<Home/>);
+      this.component = mount(<Home />);
       return this;
     },
   };
 
-  is = {
+  public is = {
     ok: () => Boolean(this.component.find('[data-hook="home-page"]').length === 1),
   };
 }

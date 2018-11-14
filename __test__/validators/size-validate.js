@@ -8,11 +8,11 @@ const log = require('../utils/log');
 
 const questions = [
   {
-    type: "list",
-    name: "approve",
-    message: "Bundle size increased, approve?",
-    choices: ["yes", "no"]
-  }
+    type: 'list',
+    name: 'approve',
+    message: 'Bundle size increased, approve?',
+    choices: ['yes', 'no'],
+  },
 ];
 
 const prepareBundleSizes = () => {
@@ -22,11 +22,11 @@ const prepareBundleSizes = () => {
   return Object.keys(items).reduce((acc, name) => {
     const item = items[name];
     acc[item.url] = {
-      size: items[name].transferSize
+      size: items[name].transferSize,
     };
-    return acc
+    return acc;
   }, {});
-}
+};
 
 const prepareLighthouseReport = () => exec('npm run lh');
 
@@ -57,6 +57,6 @@ const run = async () => {
   }
   log.success(`DONE: ${totalSize}`);
   process.exit(0);
-}
+};
 
 run();

@@ -1,0 +1,5 @@
+.git/
+.history/
+build/
+coverage/
+.next

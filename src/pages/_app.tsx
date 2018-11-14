@@ -1,19 +1,19 @@
-import React from 'react'
-import App, { Container } from 'next/app'
-import Head from 'next/head'
+import App, { Container } from 'next/app';
+import Head from 'next/head';
+import React from 'react';
 
 export default class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
+  public static async getInitialProps({ Component, ctx }) {
+    let pageProps = {};
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { pageProps }
+    return { pageProps };
   }
 
-  render () {
+  public render() {
     const { Component, pageProps } = (this as any).props;
 
     return (
@@ -25,6 +25,6 @@ export default class MyApp extends App {
           <Component {...pageProps} />
         </div>
       </Container>
-    )
+    );
   }
 }

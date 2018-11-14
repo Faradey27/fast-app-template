@@ -6,14 +6,14 @@ import Error from './../index';
 export default class ErrorDriver {
   private component: ReactWrapper;
 
-  when = {
+  public when = {
     created: () => {
-      this.component = mount(<Error statusCode="200"/>);
+      this.component = mount(<Error statusCode="200" />);
       return this;
     },
   };
 
-  is = {
+  public is = {
     ok: () => Boolean(this.component.find('[data-hook="error-page"]').length === 1),
   };
 }

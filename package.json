@@ -3,9 +3,13 @@
     "dev": "nodemon src/server/server.ts",
     "build": "rm -rf src/.next && next build src && tsc --project tsconfig.server.json && cp -r src/server/ssl src/.next/ssl",
     "start": "cross-env NODE_ENV=production node src/.next/server.js",
+    "prettier": "prettier --write \"{src,__test__}/**/*.{js,ts,tsx,json}\"",
+    "prettier:check": "prettier-check \"{src,__test__}/**/*.{js,ts,tsx,json}\"",
     "analyze": "cross-env ANALYZE=1 npm run build",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
     "test": "npm run test:unit && npm run size:ci && npm run lh:ci",
     "test:unit": "jest --config=jest.config.json",
+    "tslint:check": "tslint-config-prettier-check ./tslint.json",
     "lh": "lighthouse https://localhost --chrome-flags=\"--allow-insecure-localhost --headless\" --output=json --output-path=./tmp/_lh-report.json --score=75",
     "lh:ci": "node __test__/validators/lh-validate.js",
     "size:ci": "node __test__/validators/size-validate.js"
@@ -46,7 +50,13 @@
     "lighthouse": "^3.2.1",
     "lighthouse-ci": "^1.2.1",
     "nodemon": "^1.17.5",
+    "prettier": "^1.15.2",
+    "prettier-check": "^2.0.0",
     "ts-node": "^4.1.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^3.6.0",
     "webpack-bundle-analyzer": "^3.0.2"
   }
 }
