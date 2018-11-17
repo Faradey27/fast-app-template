@@ -6,7 +6,14 @@ const withHTTP2Push = (server, statics) => {
         statics
           .filter((file) => pageNames.indexOf(file.routeName) === -1 || file.routeName === req.url)
           .forEach((file) => {
-            (res as any).push(file.route, { 'content-type': 'application/javascript' }, (err, stream) => {
+            (res as any).push(
+              file.route,
+              {
+                response: {
+                  'content-encoding' : 'gzip',
+                }
+              },
+              (err, stream) => {
               if (err) {
                 return;
               }

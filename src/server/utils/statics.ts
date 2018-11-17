@@ -1,8 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as zlib from 'zlib';
 
 const byAsset = (fileName) =>
   fileName !== 'a.js' && fileName !== 'b.js' && (fileName.indexOf('.js') !== -1 || fileName.indexOf('.css') !== -1);
+
+const readFileAndGzip = pathToFile => zlib.gzipSync(fs.readFileSync((pathToFile)))
 
 export const readChunkFiles = (rootPath: string) => {
   const subPath = 'static/chunks';
@@ -12,7 +15,7 @@ export const readChunkFiles = (rootPath: string) => {
     .map((name) => {
       const pathToFile = path.join(rootPath, subPath, name);
       return {
-        data: fs.readFileSync(pathToFile),
+        data: readFileAndGzip(pathToFile),
         name,
         path: pathToFile,
         route: `/_next/${subPath}/${name}`,
@@ -30,7 +33,7 @@ export const readRuntimeFiles = (rootPath: string) => {
     .map((name) => {
       const pathToFile = path.join(rootPath, subPath, name);
       return {
-        data: fs.readFileSync(pathToFile),
+        data: readFileAndGzip(pathToFile),
         name,
         path: pathToFile,
         route: `/_next/${subPath}/${name}`,
@@ -48,7 +51,7 @@ export const readPagesFiles = (rootPath: string, buildId: string) => {
     .map((name) => {
       const pathToFile = path.join(rootPath, subPath, name);
       return {
-        data: fs.readFileSync(pathToFile),
+        data: readFileAndGzip(pathToFile),
         name,
         path: pathToFile,
         route: `/_next/${subPath}/${name}`,

@@ -10,13 +10,18 @@
     "no-implicit-dependencies": false,
     "no-console": [true, "log"],
     "no-var-requires": false,
+    "interface-name": false,
+    "no-namespace": false,
+    "no-internal-module": false,
     "member-ordering": [
       true,
       {
         "order": [
           "private-static-field",
-          "private-instance-field",
           "public-static-field",
+          "private-constructor",
+          "public-constructor",
+          "private-instance-field",
           "public-instance-field",
           "private-constructor",
           "public-constructor",

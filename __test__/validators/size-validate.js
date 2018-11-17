@@ -51,6 +51,7 @@ const run = async () => {
       }
     } else if (totalSize < prevTotalSize) {
       log.success(`BUNDLE SIZE DECREASED: ${prevTotalSize - totalSize}`);
+      fs.writeFileSync(path.join(__dirname, '.prev-size'), totalSize);
     } else {
       log.info('BUNDLE SIZE THE SAME');
     }

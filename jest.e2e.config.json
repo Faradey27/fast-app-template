@@ -1,0 +1,16 @@
+{
+  "moduleFileExtensions": [
+    "tsx",
+    "ts",
+    "js",
+    "json"
+  ],
+  "transform": {
+    "^.+\\.tsx?$": "babel-jest"
+  },
+  "testMatch": [
+    "**/__test__/**/*.e2e.ts",
+    "__test__/**/*.e2e.ts"
+  ],
+  "globalSetup": "./__test__/jest-setup-e2e.js"
+}
