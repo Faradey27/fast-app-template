@@ -1,8 +1,7 @@
 import React from 'react';
-import { IItem } from './../../components/ItemCard/types';
 
-interface IItemProps extends IItem {
-  itemId: string;
+interface IItemProps {
+  itemId?: string;
 }
 
 class Item extends React.Component<IItemProps> {
@@ -18,7 +17,7 @@ class Item extends React.Component<IItemProps> {
         <div className="content">
           {this.props.itemId}
         </div>
-        <style>
+        <style jsx>
           {`
             .item-page {
               display: flex;

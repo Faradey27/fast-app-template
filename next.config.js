@@ -7,8 +7,8 @@ const withOffline = require('next-offline')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const config = withTypescript(
-  withPreact({
+const config = withTypescript({
+  // withPreact({
     webpack(config) {
       if (process.env.ANALYZE) {
         config.plugins.push(new BundleAnalyzerPlugin({analyzerMode: 'static'}));
@@ -17,8 +17,8 @@ const config = withTypescript(
       config.plugins.push(new webpack.IgnorePlugin(/__test__/));
       return config;
     },
-  })
-);
+  // })
+});
 
 if (process.env.NODE_ENV === 'production') {
   module.exports = withOffline(config);

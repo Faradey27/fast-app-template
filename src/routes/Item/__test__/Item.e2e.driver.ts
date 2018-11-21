@@ -1,6 +1,6 @@
 import Browser from '../../../../__test__/Browser';
 
-export default class HomeDriver {
+export default class ItemDriver {
   constructor({ browser }: { browser: Browser } ) {
     this.browser = browser;
   }
@@ -9,12 +9,12 @@ export default class HomeDriver {
 
   public when = {
     loaded: async () => {
-      await this.browser.openPage('/');
+      await this.browser.openPage('/items/1');
       return this;
     },
   };
 
   public is = {
-    ok: () => this.browser.getPage().waitForSelector('[data-hook="home-page"]'),
+    ok: () => this.browser.getPage().waitForSelector('[data-hook="item-page"]'),
   };
 }

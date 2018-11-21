@@ -1,16 +1,16 @@
 import Browser from '../../../../__test__/Browser';
-import HomeDriver from './Home.e2e.driver';
+import ItemDriver from './Item.e2e.driver';
 
 const browser = new Browser();
 
-describe('Home Page', () => {
+describe('Item Page', () => {
   beforeAll(browser.launch);
   afterAll(browser.close);
 
-  let driver: HomeDriver;
+  let driver: ItemDriver;
 
   beforeEach(async () => {
-    driver = new HomeDriver({ browser });
+    driver = new ItemDriver({ browser });
     await driver.when.loaded();
   });
 

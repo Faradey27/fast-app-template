@@ -10,6 +10,8 @@ import { readStatics } from './utils/statics';
 import withHTTP2 from './utils/withHTTP2';
 import withHTTP2Push from './utils/withHTTP2Push';
 
+require('@zeit/next-preact/alias')();
+
 const PORT_HTTP = process.env.NODE_ENV === 'production' ? 80 : 3000;
 const PORT_HTTPS = process.env.NODE_ENV === 'production' ? 443 : 3001;
 const __DEV__ = process.env.NODE_ENV !== 'production';
