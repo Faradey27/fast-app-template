@@ -13,6 +13,7 @@
     "interface-name": false,
     "no-namespace": false,
     "no-internal-module": false,
+    "jsx-boolean-value": false,
     "member-ordering": [
       true,
       {

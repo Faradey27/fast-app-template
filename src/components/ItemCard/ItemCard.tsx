@@ -1,12 +1,14 @@
 import React from 'react';
-
+import Link from './../Link';
 import { IItem } from './types';
 
 class ItemCard extends React.Component<IItem> {
   public render() {
     return (
       <div className="item-root">
-        {this.props.name}
+        <Link href={`/items/${this.props.id}`}>
+          {this.props.name}
+        </Link>
         <style>
           {`
             .item-root {
