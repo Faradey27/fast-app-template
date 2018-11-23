@@ -13,7 +13,10 @@
     "tslint:check": "tslint-config-prettier-check ./tslint.json",
     "lh": "lighthouse https://localhost --chrome-flags=\"--allow-insecure-localhost --headless\" --output=json --output-path=./tmp/_lh-report.json",
     "lh:ci": "node __test__/validators/lh-validate.js",
-    "size:ci": "node __test__/validators/size-validate.js"
+    "size:ci": "node __test__/validators/size-validate.js",
+    "docker:build": "docker build -t fast-app-template .",
+    "docker:run": "docker run -p 80:80 -p 443:443 -d fast-app-template",
+    "docker": "npm run docker:build && npm run docker:run"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-rc.1",

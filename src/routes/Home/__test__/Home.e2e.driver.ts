@@ -8,6 +8,10 @@ export default class HomeDriver {
   private browser: Browser;
 
   public when = {
+    clickOnItem: async (id: string) => {
+      this.browser.getPage().click(`[data-testid="${id}"]`);
+      return this;
+    },
     loaded: async () => {
       await this.browser.openPage('/');
       return this;
@@ -15,6 +19,7 @@ export default class HomeDriver {
   };
 
   public is = {
+    itemPageLoaded: () => this.browser.getPage().waitForSelector('[data-testid="item-page"]'),
     ok: () => this.browser.getPage().waitForSelector('[data-testid="home-page"]'),
   };
 }
