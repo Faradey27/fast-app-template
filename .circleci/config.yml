@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.5.0
+
+    working_directory: ~/fast-app-template
+
+    steps:
+      - checkout
+
+      - run: npm install
+      - run: npm test
