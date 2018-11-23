@@ -11,7 +11,7 @@
     "test:e2e": "jest -c ./jest.e2e.config.json --detectOpenHandles -i --forceExit",
     "test:unit": "jest --config=jest.config.json",
     "tslint:check": "tslint-config-prettier-check ./tslint.json",
-    "lh": "lighthouse https://localhost --chrome-flags=\"--allow-insecure-localhost --headless\" --output=json --output-path=./tmp/_lh-report.json",
+    "lh": "lighthouse https://localhost --no-enable-error-reporting --chrome-flags=\"--allow-insecure-localhost --headless\" --output=json --output-path=./tmp/_lh-report.json",
     "lh:ci": "node __test__/validators/lh-validate.js",
     "size:ci": "node __test__/validators/size-validate.js",
     "docker:build": "docker build -t fast-app-template .",
