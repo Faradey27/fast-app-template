@@ -1,10 +1,10 @@
 import React from 'react';
-
 import ItemCard from './../../components/ItemCard';
 import { IItem } from './../../components/ItemCard/types';
+import ItemStyle from './components/ItemStyle';
 
-interface IHomeProps {
-  items: IItem[];
+export interface IHomeProps {
+  items?: IItem[];
 }
 
 class Home extends React.Component<IHomeProps> {
@@ -27,30 +27,23 @@ class Home extends React.Component<IHomeProps> {
 
   public renderItems() {
     return this.props.items.map((item) => (
-      <div className="item-wrap" key={item.id}>
+      <ItemStyle key={item.id}>
         <ItemCard {...item} />
-      </div>
+      </ItemStyle>
     ));
   }
 
   public render() {
     return (
-      <div className="home-page" data-hook="home-page">
+      <div className="home-page" data-testid="home-page">
         {this.renderItems()}
-        <style>
-          {`
-            .home-page {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-around;
-            }
-            .item-wrap {
-              margin-top: 24px;
-              width: 150px;
-              height: 150px;
-            }
-          `}
-        </style>
+        <style jsx>{`
+          .home-page {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+          }
+        `}</style>
       </div>
     );
   }

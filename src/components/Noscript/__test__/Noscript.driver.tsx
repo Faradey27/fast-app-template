@@ -14,7 +14,7 @@ export default class NoscriptDriver {
   };
 
   public is = {
-    ok: () => Boolean(this.component.find('[data-hook="noscript-component"]').length === 1),
+    ok: () => Boolean(this.component.find('[data-testid="noscript-component"]').length === 1),
   };
 
   public get = {

@@ -21,6 +21,6 @@ export default class ItemDriver {
   };
 
   public is = {
-    ok: () => Boolean(this.component.find('[data-hook="item-page"]').length === 1),
+    ok: () => Boolean(this.component.find('[data-testid="item-page"]').length === 1),
   };
 }

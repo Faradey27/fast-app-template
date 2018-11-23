@@ -13,7 +13,7 @@ class Item extends React.Component<IItemProps> {
 
   public render() {
     return (
-      <div className="item-page" data-hook="item-page">
+      <div className="item-page" data-testid="item-page">
         <div className="content">
           {this.props.itemId}
         </div>

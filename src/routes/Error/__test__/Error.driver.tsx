@@ -14,6 +14,6 @@ export default class ErrorDriver {
   };
 
   public is = {
-    ok: () => Boolean(this.component.find('[data-hook="error-page"]').length === 1),
+    ok: () => Boolean(this.component.find('[data-testid="error-page"]').length === 1),
   };
 }

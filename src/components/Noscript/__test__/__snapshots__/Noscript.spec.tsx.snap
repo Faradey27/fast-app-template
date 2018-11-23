@@ -8,7 +8,7 @@ exports[`Noscript component should match snapshot 1`] = `
         "__html": "Some text",
       }
     }
-    data-hook="noscript-component"
+    data-testid="noscript-component"
   />
 </Noscript>
 `;

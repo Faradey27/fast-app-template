@@ -15,6 +15,6 @@ export default class ItemDriver {
   };
 
   public is = {
-    ok: () => this.browser.getPage().waitForSelector('[data-hook="item-page"]'),
+    ok: () => this.browser.getPage().waitForSelector('[data-testid="item-page"]'),
   };
 }

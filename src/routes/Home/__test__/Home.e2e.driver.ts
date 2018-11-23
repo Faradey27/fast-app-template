@@ -15,6 +15,6 @@ export default class HomeDriver {
   };
 
   public is = {
-    ok: () => this.browser.getPage().waitForSelector('[data-hook="home-page"]'),
+    ok: () => this.browser.getPage().waitForSelector('[data-testid="home-page"]'),
   };
 }
