@@ -24,7 +24,7 @@ const run = async () => {
       process.exit(1);
     }
   });
-  log.success('PASSED');
+  log.success('PWA 100% rate - PASSED');
   process.exit(0);
 };
 
