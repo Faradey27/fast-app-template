@@ -6,6 +6,8 @@ const inquirer = require('inquirer');
 const exec = require('../utils/exec');
 const log = require('../utils/log');
 
+const MAX_SIZE_DIFF = 3000;
+
 const questions = [
   {
     type: 'list',
@@ -40,7 +42,8 @@ const run = async () => {
     log.error(`NO BUNDLE OR ZERO SIZE`);
     process.exit(1);
   } else if (prevTotalSize && totalSize) {
-    if (totalSize > prevTotalSize) {
+    const sizeDiff = totalSize - prevTotalSize;
+    if (sizeDiff > MAX_SIZE_DIFF) {
       log.error(`BUNDLE SIZE INCREASED: ${totalSize - prevTotalSize}`);
 
       const answer = await inquirer.prompt(questions);
@@ -49,8 +52,8 @@ const run = async () => {
       } else {
         fs.writeFileSync(path.join(__dirname, '.prev-size'), totalSize);
       }
-    } else if (totalSize < prevTotalSize) {
-      log.success(`BUNDLE SIZE DECREASED: ${prevTotalSize - totalSize}`);
+    } else if (sizeDiff < 0) {
+      log.success(`BUNDLE SIZE DECREASED: ${-sizeDiff}`);
       fs.writeFileSync(path.join(__dirname, '.prev-size'), totalSize);
     } else {
       log.info('BUNDLE SIZE THE SAME');
