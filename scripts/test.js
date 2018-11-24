@@ -1,9 +1,12 @@
+const locateChrome = require('locate-chrome');
 const exec = require('../__test__/utils/exec');
 
 const waiter = (delay = 400) =>
   new Promise((resolve) => setTimeout(() => resolve(), delay));
 const run = async () => {
   try {
+    const pathToChrome = await locateChrome();
+    await exec(`export CHROME_PATH=${pathToChrome}`)
     await exec('npm run lint');
     await exec('npm run tslint:check');
     await exec('npm run test:unit');
